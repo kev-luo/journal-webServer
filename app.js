@@ -14,8 +14,14 @@ app.set('view engine','ejs');
 app.use(express.urlencoded({extended:true}));
 
 // request routers
-app.get('/', (req,res) => {
-  res.render('index', {title: "Home"});
+app.get('/', async (req,res) => {
+  try {
+    const thoughts = await Thought.find().sort({createdAt: 'descending'});
+    res.render('index', {title: "Home", thoughts});
+  }
+  catch (err) {
+    console.log(err);
+  }
 })
 
 app.get('/new-thought', (req,res) => {

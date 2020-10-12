@@ -3,5 +3,34 @@
 <%- include('./partials/_head.ejs') %>
 <body>
   <%- include('./partials/_nav.ejs') %>
+
+  <section class="section">
+    <div class="columns is-multiline">
+      <% if(thoughts.length>0) { %>
+        <% thoughts.forEach(thought => { %>
+          <div class="column is-one-third">
+            <div class="card">
+              <header class="card-header">
+                <p class="card-header-title"><%= thought.topic %></p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <%= thought.thought %><br>
+                  <time datetime="<%= thought.createdAt %>"><%= thought.createdAt %></time><br>
+                  <time datetime="<%= thought.updatedAt %>"><%= thought.updatedAt %></time>
+                </div>
+              </div>
+              <footer class="card-footer">
+                <a href="#" class="card-footer-item">Edit</a>
+                <a href="#" class="card-footer-item">Delete</a>
+              </footer>
+            </div>
+          </div><br><br>
+        <% }) %>
+      <% } else { %>
+        <p>There are no thoughts to display.</p>
+      <% } %>
+    </div>
+  </section>
 </body>
 </html>
