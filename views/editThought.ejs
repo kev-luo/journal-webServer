@@ -6,7 +6,7 @@
 
   <section class="section">
     <div class="container">
-      <form action="/" method="POST">
+      <form action="/<%= thought.id%>?_method=PUT" method="POST">
         <%- include('./partials/_form_fields.ejs') %>
       </form>
 

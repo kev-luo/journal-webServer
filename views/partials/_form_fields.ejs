@@ -1,0 +1,20 @@
+<div class="field">
+  <label class="label">Topic</label>
+  <div class="control">
+    <input class="input" type="text" placeholder="Thought Topic" name="topic" value="<%= thought.topic %>" required>
+  </div>
+</div>
+<div class="field">
+  <label class="label">Thought</label>
+  <div class="control">
+    <textarea class="textarea" placeholder="Thoughts" name="thought" required><%= thought.thought %></textarea>
+  </div>
+</div>
+<div class="field is-grouped">
+  <div class="control">
+    <a href="/" class="button">Cancel</a>
+  </div>
+  <div class="control">
+    <button class="button">Submit</button>
+  </div>
+</div>

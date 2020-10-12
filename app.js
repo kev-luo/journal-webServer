@@ -27,21 +27,49 @@ app.get('/', async (req,res) => {
 })
 
 app.get('/new-thought', (req,res) => {
-  res.render('newThought', {title: "New Thought"});
+  res.render('newThought', {title: "New Thought", thought:new Thought()});
 })
 
-app.post('/', (req,res) => {
-  const thought = new Thought(req.body);
-  thought.save()
-    .then(response => {
-      res.redirect('/');
-    })
-    .catch(err => {
-      console.log(err);
-    })
+app.post('/', async (req,res) => {
+  try {
+    await (new Thought(req.body)).save();
+    res.redirect('/');
+  }
+  catch (err) {
+    console.log(err);
+  }
+})
+
+app.get('/:id', async(req,res) => {
+  try {
+    const thought = await Thought.findById(req.params.id);
+    res.render('editThought',{title: "Edit Thought", thought});
+  }
+  catch (err) {
+    console.log(err);
+  }
 })
 
 app.delete('/:id', async (req,res) => {
-  await Thought.findByIdAndDelete(req.params.id)
-  res.redirect('/');
+  try {
+    await Thought.findByIdAndDelete(req.params.id)
+    res.redirect('/');
+  }
+  catch (err) {
+    console.log(err);
+  }
+})
+
+app.put('/:id', async (req,res) => {
+  try {
+    req.thought = await Thought.findById(req.params.id);
+    let thought = req.thought;
+    thought.topic = req.body.topic;
+    thought.thought = req.body.thought;
+    thought = await thought.save();
+    res.redirect('/');
+  }
+  catch (err) {
+    console.log(err);
+  }
 })
