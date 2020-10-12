@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/_head.ejs') %>
+<body>
+  <%- include('./partials/_nav.ejs') %>
+
+  <section class="section">
+    <div class="container">
+      <form action="/" method="POST">
+        <div class="field">
+          <label class="label">Topic</label>
+          <div class="control">
+            <input class="input" type="text" placeholder="Thought Topic" name="topic" required>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Thought</label>
+          <div class="control">
+            <textarea class="textarea" placeholder="Thoughts" name="thought" required></textarea>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <a href="/" class="button">Cancel</a>
+          </div>
+          <div class="control">
+            <button class="button">Submit</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </section>
+    
+</body>
+</html>
