@@ -15,9 +15,9 @@
               </header>
               <div class="card-content">
                 <div class="content">
-                  <%= thought.thought %><br>
-                  <time datetime="<%= thought.createdAt %>"><%= thought.createdAt %></time><br>
-                  <time datetime="<%= thought.updatedAt %>"><%= thought.updatedAt %></time>
+                  <%= thought.thought %><br><br>
+                  <time class="has-text-grey-light" datetime="<%= thought.createdAt %>">Posted: <%= thought.createdAt.toLocaleDateString() %> <%= thought.createdAt.toLocaleTimeString() %></time><br>
+                  <time class="has-text-grey-light" datetime="<%= thought.updatedAt %>">Updated: <%= thought.updatedAt.toLocaleDateString() %> <%= thought.updatedAt.toLocaleTimeString() %></time>
                 </div>
               </div>
               <footer class="card-footer">
