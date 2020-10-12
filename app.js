@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const Thought = require('./models/thought');
+const methodOverride = require('method-override');
 
 const app = express();
 const port = 8000;
@@ -12,6 +13,7 @@ mongoose.connect(process.env.dataBaseURI, {useNewUrlParser:true, useUnifiedTopol
 
 app.set('view engine','ejs');
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride('_method'));
 
 // request routers
 app.get('/', async (req,res) => {
@@ -37,4 +39,9 @@ app.post('/', (req,res) => {
     .catch(err => {
       console.log(err);
     })
+})
+
+app.delete('/:id', async (req,res) => {
+  await Thought.findByIdAndDelete(req.params.id)
+  res.redirect('/');
 })
